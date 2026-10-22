@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 大肥鱼桌宠主程序（真身）。Visual Studio 直接打开 Dafeiyu.sln 就能编。
+       产物名固定 dafeiyu.exe，带鲸鱼图标和 1.0.0.0 版本信息。
+       编译完自动签名（自签证书 build\sign\dafeiyu.pfx，已在 受信任的根/受信任的发布者 里），
+       再自动部署到 C:\Tool\DSHPet\ —— 那里才是 Windows 允许固定托盘图标的位置。 -->
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>dafeiyu</AssemblyName>
+    <RootNamespace>DshOverlay</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <ApplicationIcon>..\assets\dsh-overlay.ico</ApplicationIcon>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Deterministic>true</Deterministic>
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <NoWarn>CS0168;CS0219;CS0414</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="DshOverlayLauncher.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <!-- 编译完签名（失败不拦编译，只是弹个警告） -->
+  <Target Name="SignOutput" AfterTargets="Build" Condition="Exists('$(MSBuildProjectDirectory)\..\build\sign\dafeiyu.pfx')">
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe&quot; sign /f &quot;$(MSBuildProjectDirectory)\..\build\sign\dafeiyu.pfx&quot; /p dafeiyu-pet-2026 /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com &quot;$(TargetPath)&quot;"
+          ContinueOnError="true" />
+  </Target>
+
+</Project>

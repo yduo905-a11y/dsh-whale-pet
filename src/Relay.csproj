@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- 工作区里那个 dafeiyu.exe 的"转发器"：双击它 → 直接 CreateProcess 拉起
+       C:\Tool\DSHPet\dafeiyu.exe（真身）→ 自己退出。
+       别改成 UseShellExecute=true：走 shell 启动时托盘图标会被 Explorer 塞进溢出面板。 -->
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>dafeiyu-relay</AssemblyName>
+    <RootNamespace>DshOverlayRelay</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>..\assets\dsh-overlay.ico</ApplicationIcon>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Deterministic>true</Deterministic>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="DshOverlayRelay.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <Target Name="SignOutput" AfterTargets="Build" Condition="Exists('$(MSBuildProjectDirectory)\..\build\sign\dafeiyu.pfx')">
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe&quot; sign /f &quot;$(MSBuildProjectDirectory)\..\build\sign\dafeiyu.pfx&quot; /p dafeiyu-pet-2026 /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com &quot;$(TargetPath)&quot;"
+          ContinueOnError="true" />
+  </Target>
+
+</Project>

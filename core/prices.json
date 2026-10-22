@@ -1,0 +1,13 @@
+{
+  "_comment": "每 100 万 token 单价。currency=CNY 为人民币价，USD 会按 config.currency.usdToCny 换算。用 tools/calibrate.mjs 对着真实账单校准。",
+  "models": {
+    "deepseek-flash":    { "currency": "CNY", "inputCacheMissPerM": 2.0,  "inputCacheHitPerM": 0.2,  "inputCacheWritePerM": 2.0,  "outputPerM": 3.0 },
+    "deepseek-v4-pro":   { "currency": "CNY", "inputCacheMissPerM": 2.0,  "inputCacheHitPerM": 0.2,  "inputCacheWritePerM": 2.0,  "outputPerM": 3.0 },
+    "deepseek-chat":     { "currency": "CNY", "inputCacheMissPerM": 2.0,  "inputCacheHitPerM": 0.2,  "inputCacheWritePerM": 2.0,  "outputPerM": 3.0 },
+    "deepseek-reasoner": { "currency": "CNY", "inputCacheMissPerM": 4.0,  "inputCacheHitPerM": 0.5,  "inputCacheWritePerM": 4.0,  "outputPerM": 12.0 },
+    "gpt-5-codex":       { "currency": "USD", "inputCacheMissPerM": 1.25, "inputCacheHitPerM": 0.125, "inputCacheWritePerM": 1.25, "outputPerM": 10.0 },
+    "claude-sonnet-4-5": { "currency": "USD", "inputCacheMissPerM": 3.0,  "inputCacheHitPerM": 0.3,  "inputCacheWritePerM": 3.75, "outputPerM": 15.0 }
+  },
+  "defaultModel": "deepseek-flash",
+  "fallback": { "currency": "CNY", "inputCacheMissPerM": 2.0, "inputCacheHitPerM": 0.2, "inputCacheWritePerM": 2.0, "outputPerM": 3.0 }
+}

@@ -1,0 +1,93 @@
+{
+  "_comment": "dsh-overlay 核心配置。改完重启 start.cmd 生效。",
+  "bus": {
+    "host": "127.0.0.1",
+    "port": 17777
+  },
+  "codexHome": "C:/Users/<你的用户名>/.codex",
+  "watch": {
+    "codexSessions": true,
+    "claudeProjects": true,
+    "pollMs": 400,
+    "replayOnStart": false,
+    "tailBytesOnFirstOpen": 262144
+  },
+  "currency": {
+    "code": "CNY",
+    "symbol": "¥",
+    "usdToCny": 7.2,
+    "scale": 1
+  },
+  "pricesFile": "prices.json",
+  "balance": {
+    "mode": "api",
+    "startCny": 78.92,
+    "persistFile": "state.json",
+    "capCny": 10,
+    "api": {
+      "provider": "deepseek",
+      "url": "https://api.deepseek.com/user/balance",
+      "apiKey": "",
+      "currency": "CNY",
+      "pollMs": 30000,
+      "timeoutMs": 8000
+    }
+  },
+  "display": {
+    "label": "命中",
+    "decimals": 4,
+    "comboLabel": "COMBO"
+  },
+  "tiers": [
+    {
+      "upToCny": 0.02,
+      "name": "命中",
+      "size": 34,
+      "color": "#FF4A4A",
+      "glow": "#FF1E1E",
+      "shakeMs": 120,
+      "weight": "Bold",
+      "italic": false
+    },
+    {
+      "upToCny": 0.08,
+      "name": "会心一击",
+      "size": 54,
+      "color": "#FF7BE5",
+      "glow": "#C13BFF",
+      "shakeMs": 240,
+      "weight": "Black",
+      "italic": true
+    },
+    {
+      "upToCny": 999999,
+      "name": "大出血",
+      "size": 68,
+      "color": "#FFFFFF",
+      "glow": "#FF2BD6",
+      "shakeMs": 420,
+      "weight": "Black",
+      "italic": true
+    }
+  ],
+  "combo": {
+    "windowMs": 5000,
+    "showFrom": 2,
+    "timeoutMs": 4000
+  },
+  "fx": {
+    "flashOnCrit": true,
+    "flashOpacity": 0.16,
+    "screenShake": true,
+    "soundEnabled": false,
+    "soundFile": "",
+    "soundCooldownMs": 250
+  },
+  "host": {
+    "reconnectMs": 1500,
+    "tickMs": 40,
+    "clickThrough": true,
+    "topmost": true,
+    "hideFromAltTab": true
+  }
+}

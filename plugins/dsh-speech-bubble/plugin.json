@@ -1,0 +1,28 @@
+{
+  "id": "dsh-speech-bubble",
+  "name": "思考气泡",
+  "version": "1.0.0",
+  "enabled": true,
+  "kind": "overlay",
+  "window": {
+    "mode": "panel",
+    "clickThrough": true,
+    "topmost": true
+  },
+  "settings": {
+    "bubbleWidth": 200,
+    "bubbleHeight": 80,
+    "tailHeight": 40,
+    "side": "left",
+    "overlapPetX": 58,
+    "offsetY": 0,
+    "screenPad": 10,
+    "fontSize": 12.5,
+    "stroke": 4.0,
+    "strokeColor": "#FF173A8C",
+    "fill": "#F7FFFFFF",
+    "textColor": "#FF16306F",
+    "fadeMs": 160,
+    "debugPosition": false
+  }
+}
